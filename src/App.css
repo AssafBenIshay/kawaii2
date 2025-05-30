@@ -1,0 +1,57 @@
+.app {
+    width: 100%;
+    height: 110vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.game-area {
+    box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.7);
+    border-radius: 50px;
+    width: 1000px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-area-top {
+    background-image: url('./assets/svg/background.svg');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-blend-mode: exclusion;
+    background-color: #f2f3c2;
+    width: 1000px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10px;
+}
+
+.game-area-bottom {
+    background-image: url('./assets/svg/background.svg');
+    -webkit-transform: scaleX(-1) scaleY(-1);
+    transform: scaleX(-1) scaleY(-1);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-blend-mode: exclusion;
+    background-color: #f2f3c2;
+    width: 1000px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+}

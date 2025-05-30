@@ -1,0 +1,56 @@
+.bottom-console {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 2;
+    width: 800px;
+    height: 80px;
+    position: absolute;
+    bottom: 40px;
+    backdrop-filter: blur(2px) invert(80%);
+    border: 1px solid navy;
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.bottom-console-button {
+    background-color: #00000069;
+    border-radius: 5px;
+    padding: 10px;
+    min-width: 150px;
+    border: 1px solid navy;
+    box-shadow: 1px 3px 7px rgba(80, 80, 80, 0.712);
+    font-family: monospace;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.bottom-console-button:hover {
+    transition: background-color 0.2s;
+    background-color: #ffffff69;
+}
+
+.bottom-console-button:active {
+    background-color: #00000069;
+    transform: scale(0.95);
+}
+
+.inactive {
+    pointer-events: none;
+    background-color: transparent;
+    cursor: not-allowed;
+}
+
+.muted-pc-turn {
+    background-color: rgba(255, 0, 0, 0.336);
+    cursor: wait;
+    pointer-events: none;
+}
+
+.muted-player-turn {
+    background-color: rgba(0, 155, 39, 0.425);
+    cursor: n-resize;
+    pointer-events: none;
+
+}

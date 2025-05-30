@@ -1,0 +1,21 @@
+:root {
+    --whte: #e6f3c8;
+}
+
+.top-bar {
+    background-color: var(--whte);
+    width: 1200px;
+    min-height: 2.5vh;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top-bar-divider{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}

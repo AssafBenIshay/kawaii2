@@ -1,0 +1,184 @@
+.do-css {
+
+    fill: #d63384;
+    fill-rule: evenodd;
+    stroke: #000000;
+    stroke-width: 0.302968;
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+    stroke-dasharray: 0, 3.33265;
+    stroke-dashoffset: 0;
+    paint-order: normal;
+}
+
+
+.re-css {
+    fill: #7e36f4;
+    fill-rule: evenodd;
+    stroke: #000000;
+    stroke-width: 0.302968;
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+    stroke-dasharray: 0, 3.33265;
+    stroke-dashoffset: 0;
+    paint-order: normal;
+}
+
+.mi-css {
+    fill: #ffc107;
+    fill-rule: evenodd;
+    stroke: #000000;
+    stroke-width: 0.302968;
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+    stroke-dasharray: 0, 3.33265;
+    stroke-dashoffset: 0;
+    paint-order: normal;
+}
+
+.fa-css {
+    fill: #17a2b8;
+    fill-rule: evenodd;
+    stroke: #000000;
+    stroke-width: 0.302968;
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+    stroke-dasharray: 0, 3.33265;
+    stroke-dashoffset: 0;
+    paint-order: normal;
+}
+
+.sol-css {
+    fill: #4ab563;
+    fill-rule: evenodd;
+    stroke: #000000;
+    stroke-width: 0.302968;
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+    stroke-dasharray: 0, 3.33265;
+    stroke-dashoffset: 0;
+    paint-order: normal;
+}
+
+.la-css {
+    fill: #fd7e14;
+    fill-rule: evenodd;
+    stroke: #000000;
+    stroke-width: 0.302968;
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+    stroke-dasharray: 0, 3.33265;
+    stroke-dashoffset: 0;
+    paint-order: normal;
+}
+
+.si-css {
+    fill: rgb(92, 96, 204);
+    fill-rule: evenodd;
+    stroke: #000000;
+    stroke-width: 0.423862;
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+    stroke-dasharray: 0, 4.66248;
+    stroke-dashoffset: 0;
+    stroke-opacity: 1;
+    paint-order: normal;
+}
+
+.svg {
+    position: absolute;
+    cursor: pointer;
+    /* filter: drop-shadow(0px 0px 2px #ffffff60); */
+}
+
+/* .svg:hover {
+    filter: drop-shadow(0px 0px 6px #ffffff88) brightness(2);
+} */
+
+/* .svg:active {
+    filter: brightness(20);
+    } */
+
+.topL {
+    top: 66px;
+    left: 25px;
+}
+
+.topC {
+    top: 23px;
+}
+
+.topR {
+    top: 66px;
+    right: 25px;
+
+}
+
+.circle {
+    top: 50%;
+    left: 50%;
+    width: 165px;
+    height: 165px;
+    transform: translate(-50%, -50%);
+
+
+}
+
+.bottomL {
+    bottom: 66px;
+    left: 25px;
+
+}
+
+.bottomC {
+    bottom: 23px;
+
+}
+
+.bottomR {
+    bottom: 66px;
+    right: 25px;
+
+}
+
+@keyframes c-spark {
+    0% {
+        filter: saturate(5);
+        transform: scale(1.1) translate(-46%, -46%);
+    }
+
+    80% {
+        filter: saturate(1);
+        transform: scale(0.9) translate(-51%, -51%);
+    }
+
+    100% {
+        filter: saturate(0);
+        transform: scale(1) translate(-50%, -50%);
+    }
+}
+
+@keyframes spark {
+    0% {
+        filter: saturate(5);
+        transform: scale(1.1) ;
+    }
+
+    80% {
+        filter: saturate(1);
+        transform: scale(0.9) ;
+    }
+
+    100% {
+        filter: saturate(0);
+        transform: scale(1) ;
+    }
+}
+
+
+.shape-spark {
+    animation: spark 300ms ease-in;
+}
+.circle-spark {
+    animation: c-spark 300ms ease-in;
+}

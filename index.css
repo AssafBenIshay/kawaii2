@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Pacifico&display=swap');
+
+
+:root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    --pink: #d63384;
+    --prpl: #7e36f4;
+    --yllw: #ffc107;
+    --blue: #17a2b8;
+    --grin: #4ab563;
+    --orng: #fd7e14;
+    --navy: #070b35;
+    --whte: #e6f3c8;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: auto;
+    background-color: var(--whte);
+    overflow-x: hidden;
+}
+
+.pacifico-regular {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.architects-daughter-regular {
+    font-family: "Architects Daughter", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
