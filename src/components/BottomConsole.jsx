@@ -14,11 +14,16 @@ export default function BottomConsole({ setCurrentSignedInUser, currentSignedInU
     }, [PCTurn, currentSignedInUser])
 
     function startGame() {
-        if (!muteStatus && !gameState) { setShowGameModel(true) }
+        if (!muteStatus && !gameState) {
+            setShowGameModel(true)
+            setMsBetweenSound(2000 - currentSignedInUser.Speed * 200)
+            //|monitor the msBetweenSound Var
+        }
     }
 
     function speedUp() {
         var speed = currentSignedInUser.Speed
+
         if (speed < 9) {
             setMsBetweenSound(last => last - 200)
             setCurrentSignedInUser({

@@ -51,6 +51,8 @@ export default function GameBoard({ setCurrentSignedInUser, currentSignedInUser,
             //? On this side of the "if" sounds are being played acc to the accumulated sequence    
             let index = 0;
             const intrvl = setInterval(() => {
+                console.log('msBetweenSound :>> ', msBetweenSound);
+
                 if (index < music.length) {
                     //notes[music[index]].play() //TODO replace with useImperativeHandle
                     switch (music[index]) {
