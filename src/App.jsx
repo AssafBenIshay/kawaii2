@@ -128,6 +128,7 @@ export default function App() {
 
       </section>
       {gameAlert.state && <GameAlertModel setGameAlert={setGameAlert} gameAlert={gameAlert} />}
+
     </div>
   )
 }
