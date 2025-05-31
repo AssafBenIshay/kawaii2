@@ -1,5 +1,5 @@
 import React from 'react'
-import '../components/subComponents/subComponentsCss/subComponents.css'
+import './subComponents/subComponentsCss/subComponents.css'
 import ColorHeader from './subComponents/ColorHeader';
 
 export default function GameAlertModel({setGameAlert,gameAlert}) {
