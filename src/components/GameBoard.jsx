@@ -51,8 +51,6 @@ export default function GameBoard({ setCurrentSignedInUser, currentSignedInUser,
             //? On this side of the "if" sounds are being played acc to the accumulated sequence    
             let index = 0;
             const intrvl = setInterval(() => {
-                console.log('msBetweenSound :>> ', msBetweenSound);
-
                 if (index < music.length) {
                     //notes[music[index]].play() //TODO replace with useImperativeHandle
                     switch (music[index]) {
@@ -136,7 +134,8 @@ export default function GameBoard({ setCurrentSignedInUser, currentSignedInUser,
                 setScore(indexer + 1)
             }
 
-            if (score % 4 === 0 && indexer % 4 === 0 && indexer !==0) {
+            if (score % 4 === 0 && indexer % 4 === 0 && indexer !== 0) {
+                console.log(`score:${score}|| indexer:${indexer}`,new Date().toLocaleTimeString())
                 //? play a sound to notify user when a new stage passed
                 stageSound.play()
                 console.log('Stage PASSED || score:',score,' || indexer:',indexer,"=",new Date().toLocaleTimeString())
@@ -150,8 +149,10 @@ export default function GameBoard({ setCurrentSignedInUser, currentSignedInUser,
             })
         }
 
-        function updateLocalStorageWithLostUserData(){
-            var id = currentSignedInUser.Id
+        function updateLocalStorageWithLostUserData() {
+            //? by searching each item in the DB the user ID is found so the 
+            //? user data can be saved on local storage
+            var losingUserId =0
             var losingUser = {
                 "Name": currentSignedInUser.Name,
                 "Email": currentSignedInUser.Email,
@@ -162,7 +163,20 @@ export default function GameBoard({ setCurrentSignedInUser, currentSignedInUser,
                 "Highscore": currentSignedInUser.Highscore,
             
             }
-            localStorage.setItem('KawaiiUsersDB', JSON.stringify({id,losingUser}))
+
+            var KawaiiUsersDBCopy = JSON.parse(localStorage.getItem('KawaiiUsersDB'))
+            var ParsedUsersDB = Object.values(KawaiiUsersDBCopy)
+            var ParsedUsersDBKeys = Object.keys(KawaiiUsersDBCopy)
+
+            ParsedUsersDB.forEach((user,index) => {
+                if (user.Email === losingUser.Email && user.Password === losingUser.Password) {
+                        losingUserId = ParsedUsersDBKeys[index]
+                        console.log('losingUserId :>> ', losingUserId);
+                }
+            })
+
+            KawaiiUsersDBCopy[losingUserId] = losingUser
+            localStorage.setItem('KawaiiUsersDB', JSON.stringify(KawaiiUsersDBCopy))
         }
 
 

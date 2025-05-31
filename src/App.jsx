@@ -51,8 +51,8 @@ export default function App() {
 
   React.useEffect(() => {
     //console.log('ON LOAD LOG PRINT USING UseEffect::currentSignedInUser', currentSignedInUser);
-    setMuteStatus(false) //!!! delete when finishing app
-    Howler.mute(false) //!! delete
+    // setMuteStatus(false) //!!! delete when finishing app
+    // Howler.mute(false) //!! delete
 
     if (gameAlert.finalize === 'killGame') {
       setCurrentSignedInUser(null)
@@ -141,7 +141,7 @@ export default function App() {
 //* 5: Sounds successfully connected to svg buttons
 //* 6: optional:: set user random Robot char from robot by name Char api
 //bug: disconect user from currentSignedInUser when user presses signin mid game
-//error: after 1 round and fail when player starting new game all sounds cluster to big noise
+//*: after 1 round and fail when player starting new game all sounds cluster to big noise
 //todo: bar meter for the amount of user correct clicks
 //todo: an animation of fireworks
-//error: fix the msBetweenSound initialization issue 
+//*: fix the msBetweenSound initialization issue 
