@@ -9,6 +9,7 @@ import BottomConsole from './components/BottomConsole'
 import PresenceModel from './components/PresenceModel'
 import GameStartModel from './components/GameStartModel'
 import GameLostModel from './components/GameLostModel'
+import GameAlertModel from './components/GameAlertModel'
 
 import { Howler } from 'howler' //!! delete
 
@@ -16,17 +17,17 @@ export default function App() {
   const [showPresenceModel, setShowPresenceModel] = React.useState(false)
   const [muteStatus, setMuteStatus] = React.useState(true)
   const [showInstructions, setShowInstructions] = React.useState(false)
-  //~--------------------------------------↑ TOP BAR VARIABLES ↑------------------------------------------------~//
+  const [gameAlert, setGameAlert] = React.useState({ state: false, message: "", execute: null, finalize: null })
+  //~______________________________________↑ TOP BAR VARIABLES ↑________________________________________________~//
   const [usersDb, setUsersDb] = React.useState('')
 
   React.useEffect(() => {
     var storedUsersDB = localStorage.getItem('KawaiiUsersDB')
     if (storedUsersDB === null) {
-      console.log('no users db ');
       localStorage.setItem('KawaiiUsersDB', JSON.stringify({}))
     }
   }, [usersDb])
-  //^-----------------------------------------◬ DB Initialization◬ ----------------------------------------------^//
+  //^_________________________________________◬ DB Initialization◬ ______________________________________________^//
   const [currentSignedInUser, setCurrentSignedInUser] = React.useState(null)
   // const [currentSignedInUser, setCurrentSignedInUser] = React.useState({//!Delete when finished
   //   "Id": 1747491462298,
@@ -38,30 +39,59 @@ export default function App() {
   //   "Stage": 0,
   //   "Highscore": 0,
   // })
-  //&-----------------------------------------⇈  SINGED IN User data Storage ⇈------------------------------------&//
+  //&ooooooooooooooooooooooooooooooooooooooooo⇈  SINGED IN User data Storage ⇈oooooooooooooooooooooooooooooooooooo&//
+  const [gameState, setGameState] = React.useState(false) // Sets if game is active or not
+  const [PCTurn, setPCTurn] = React.useState(false)//Sets wether pc turn or not
+  const [showGameModel, setShowGameModel] = React.useState(false)
+  //?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx↡↡ GAME VARIABLES ↡↡xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx?//
+  const [msBetweenSound, setMsBetweenSound] = React.useState(1000) //game speed
+  const [showGameLostModel, setShowGameLostModel] = React.useState(false)
+
+  //?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx↟↟ GAME VARIABLES ↟↟xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx?//
+
   React.useEffect(() => {
     //console.log('ON LOAD LOG PRINT USING UseEffect::currentSignedInUser', currentSignedInUser);
     setMuteStatus(false) //!!! delete when finishing app
     Howler.mute(false) //!! delete
-  }, [currentSignedInUser])
-  //-------------------------------------------A informative section A----------------------------------------------//
-  const [gameState, setGameState] = React.useState(false) // Sets if game is active or not
-  const [PCTurn, setPCTurn] = React.useState(false)//Sets wether pc turn or not
-  const [showGameModel, setShowGameModel] = React.useState(false)
-  //?---------------------------------------↡↡ GAME VARIABLES ↡↡-----------------------------------------------------?//
-  const [msBetweenSound, setMsBetweenSound] = React.useState(1000) //game speed
-  const [showGameLostModel,setShowGameLostModel] = React.useState(false)
 
-  //?---------------------------------------↟↟ GAME VARIABLES ↟↟-----------------------------------------------------?//
+    if (gameAlert.finalize === 'killGame') {
+      setCurrentSignedInUser(null)
+      setGameState(false)
+      setPCTurn(true)
+      setGameAlert({
+        execute: null,
+        finalize: null,
+        message: '',
+        state: false
+      })
 
+    } else if (gameAlert.finalize === 'replaceUser') {
+      setCurrentSignedInUser(null)
+      setGameState(false)
+      setPCTurn(false)
+      setShowPresenceModel(true)
+      setGameAlert({
+        execute: null,
+        finalize: null,
+        message: '',
+        state: false
+      })
+
+    }
+  }, [setCurrentSignedInUser, gameAlert.execute, gameAlert.finalize])
+  //&oooooooooooooooooooooooooooooooooooooooooooA informative section Aoooooooooooooooooooooooooooooooooooooooooooooo//
   return (
     <div className={'app'}>
       <TopBar
+        gameState={gameState}
         muteStatus={muteStatus}
         setMuteStatus={setMuteStatus}
         setShowInstructions={setShowInstructions}
         setShowPresenceModel={setShowPresenceModel}
         currentSignedInUser={currentSignedInUser}
+        setCurrentSignedInUser={setCurrentSignedInUser}
+        setGameAlert={setGameAlert}
+        gameAlert={gameAlert}
       />
       <ColorHeader headerText={'Kawaii'} classNameHeader={'h1-header'} />
       <ColorHeader headerText={'Cause Simon said so!'} classNameHeader={'h3-header'} />
@@ -95,7 +125,9 @@ export default function App() {
           setGameState={setGameState} gameState={gameState} PCTurn={PCTurn} setPCTurn={setPCTurn}
           setShowGameModel={setShowGameModel} muteStatus={muteStatus} setMsBetweenSound={setMsBetweenSound}
         />}
+
       </section>
+      {gameAlert.state && <GameAlertModel setGameAlert={setGameAlert} gameAlert={gameAlert} />}
     </div>
   )
 }
@@ -106,4 +138,9 @@ export default function App() {
 //* 3: soundEnable and Mute Button works
 //* 4: instructions Button works!
 //* 5: Sounds successfully connected to svg buttons
-//^ 5: optional:: set user random Robot char from robot by name Char api
+//* 6: optional:: set user random Robot char from robot by name Char api
+//bug: disconect user from currentSignedInUser when user presses signin mid game
+//error: after 1 round and fail when player starting new game all sounds cluster to big noise
+//todo: bar meter for the amount of user correct clicks
+//todo: an animation of fireworks
+//error: fix the msBetweenSound initialization issue 

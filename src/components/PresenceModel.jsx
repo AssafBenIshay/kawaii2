@@ -10,9 +10,15 @@ export default function PresenceModel({setShowPresenceModel,setCurrentSignedInUs
     const [userPassword, setUserPassword] = React.useState('')
     const [userPasswordValidate, setUserPasswordValidate] = React.useState('')
 
-    return (
+    function exitPresenceModel(e) {
+        if (e.target.className !== 'presence-background') {
+            return
+        }
+        return setShowPresenceModel(last => !last)
+    }
 
-        <div className='presence-background'>
+    return (
+        <div className='presence-background' onClick={(e)=>exitPresenceModel(e)}>
             <div className='presence-model'>
                 <div
                     className='toggler-background'

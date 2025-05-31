@@ -14,7 +14,6 @@ export default function SignInForm({ userEmail, setUserEmail, userPassword, setU
 
     function errorAlertClickHandler() {
         setErrorMessage('')
-        
     }
 
 
@@ -46,7 +45,6 @@ export default function SignInForm({ userEmail, setUserEmail, userPassword, setU
         if (ParsedUsersDB.length === 0) {
             fail.play()
             setErrorMessage('No such Email exists.')
-            
         }
 
         ParsedUsersDB.forEach(userInDB => {
